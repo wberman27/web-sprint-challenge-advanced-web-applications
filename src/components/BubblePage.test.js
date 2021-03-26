@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import BubblePage from "./BubblePage";
 import {fetchColors as mockFetchColors} from '../api/fetchColors'
 jest.mock('../api/fetchColors');
@@ -31,11 +31,11 @@ const testColors = {
 
 test("Renders BubblePage without errors", () => {
   // Finish this test
+  mockFetchColors.mockResolvedValueOnce()
+  render(<BubblePage />)
 
-  //timeout used for useEffect
-  setTimeout(()=>{
-    render(<BubblePage />)
-  },2000)
+  const bubblesTxt = screen.getByText('bubbles')
+  expect(bubblesTxt).toBeInTheDocument()
 });
 
 test("Fetches data and renders the bubbles on mounting", async () => {
@@ -43,11 +43,10 @@ test("Fetches data and renders the bubbles on mounting", async () => {
   mockFetchColors.mockResolvedValueOnce(testColors)
   render(<BubblePage />)
 
-  
-  await waitFor (()=>{
-    const color = screen.queryByText('aqua')
-    expect(color).toBeInTheDocument()
-  })
+  const colors = await screen.findByText('aqua')
+  expect(colors).toBeInTheDocument()
+  expect(colors).not.toBeNull();
+
 
 
 });
