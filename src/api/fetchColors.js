@@ -4,6 +4,7 @@ export const fetchColors = () => {
   return axiosWithAuth()
   .get('/colors')
   .then(res =>{
+    console.log(res)
     return res
   })
   .catch(err =>{

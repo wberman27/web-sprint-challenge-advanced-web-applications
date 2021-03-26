@@ -11,6 +11,7 @@ const BubblePage = () => {
 
   //on load, get colors data from server and set state
   useEffect(()=>{
+    //use fetchColors to use axiosWithAuth and return res + err
     fetchColors()
     .then(res =>{
       //res.data
