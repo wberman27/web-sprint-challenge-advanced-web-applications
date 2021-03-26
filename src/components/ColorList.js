@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import EditMenu from './EditMenu'
 import { axiosWithAuth } from "../helpers/axiosWithAuth";
+import { Redirect } from "react-router";
+import { v4 as uuid } from 'uuid';
 
 const initialColor = {
   color: "",
@@ -22,7 +24,9 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth()
     .put('/colors/:id', colorToEdit)
     .then(res =>{
-      //res.data (color)
+      //res.data (color values)
+      //give edited color a new ID, so deleting does NOT delete both new and original color
+      res.data.id = uuid();
       updateColors([...colors, res.data])
     })
     .catch(err =>{
