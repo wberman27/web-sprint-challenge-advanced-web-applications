@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from "../helpers/axiosWithAuth";
+import {fetchColors} from '../api/fetchColors'
 
+//Components
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
+
 
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
 
   //on load, get colors data from server and set state
   useEffect(()=>{
-    axiosWithAuth()
-    .get('/colors')
+    fetchColors()
     .then(res =>{
       //res.data
       //set colorlist to res data
