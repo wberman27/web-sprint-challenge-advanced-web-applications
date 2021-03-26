@@ -1,9 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import BubblePage from "./BubblePage";
-import {fetchColors, fetchColors as mockFetchColors} from '../api/fetchColors'
-jest.mock('../api/fetchColors');
-
+import {fetchColors as mockFetchColors} from '../api/fetchColors'
 
 const testColors = [
   {
@@ -32,16 +30,20 @@ const testColors = [
 
 test("Renders BubblePage without errors", () => {
   // Finish this test
-  mockFetchColors.mockResolvedValueOnce()
   render(<BubblePage />)
 });
 
 test("Fetches data and renders the bubbles on mounting", async () => {
   // Finish this test
+  
+  jest.mock('../api/fetchColors');
   mockFetchColors.mockResolvedValueOnce(testColors)
   render(<BubblePage />)
+  await waitFor (()=>{
+    const colors = screen.queryAllByTestId('color')
+    expect(colors).toHaveLength(11)
+  })
 
-  const colors = await screen.findByText('aliceblue')
 
 });
 
