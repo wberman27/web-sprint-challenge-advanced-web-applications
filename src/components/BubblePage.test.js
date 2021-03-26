@@ -11,34 +11,13 @@ test("Renders BubblePage without errors", () => {
 
 test("Fetches data and renders the bubbles on mounting", async () => {
   // Finish this test
-  render(<BubblePage />)
-
   
-  mockFetchBubbles.mockResolvedValueOnce({
-    colors: [
-      {
-        color: "aliceblue",
-        code: {
-          hex: "#f0f8ff",
-        },
-        id: 1,
-      },
-      {
-        color: "limegreen",
-        code: {
-          hex: "#99ddbc",
-        },
-        id: 2,
-      },
-      {
-        color: "aqua",
-        code: {
-          hex: "#00ffff",
-        },
-        id: 3,
-      },
-    ]
-  })
+  const colors = await screen.findAllByTestId('color')
+  
+  render(<BubblePage/>)
+  
+  expect(colors).toHaveLength(11)
+
 
 
 
