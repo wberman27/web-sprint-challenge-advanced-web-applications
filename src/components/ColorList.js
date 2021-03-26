@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EditMenu from './EditMenu'
 import { axiosWithAuth } from "../helpers/axiosWithAuth";
-import { Redirect } from "react-router";
 import { v4 as uuid } from 'uuid';
 
 const initialColor = {
