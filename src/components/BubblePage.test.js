@@ -40,14 +40,13 @@ test("Renders BubblePage without errors", () => {
 
 test("Fetches data and renders the bubbles on mounting", async () => {
   // Finish this test
-
-    mockFetchColors.mockResolvedValueOnce(testColors)
-    render(<BubblePage />)
+  mockFetchColors.mockResolvedValueOnce(testColors)
+  render(<BubblePage />)
 
   
   await waitFor (()=>{
-    const colors = screen.queryByText('limegreen')
-    expect(colors).toBeInTheDocument()
+    const color = screen.queryByText('aqua')
+    expect(color).toBeInTheDocument()
   })
 
 
