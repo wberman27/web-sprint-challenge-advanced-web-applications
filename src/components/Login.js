@@ -10,6 +10,7 @@ const initialValues = {
 
 const Login = () => {
   const [value, setValue] = useState(initialValues)
+  const [error, setError] = useState(false)
 
   
   const handleChange = (e) =>{
@@ -34,6 +35,7 @@ const Login = () => {
 
     })
     .catch(err =>{
+      setError(true)
       console.log('POST ERROR: Username/Password are incorrect!', err, err.response)
     })
 
@@ -56,6 +58,7 @@ const Login = () => {
         <label>password
           <input type='text' name='password' onChange={handleChange} value={value.password} placeholder='enter password'/>
         </label>
+        {error ? <p style={{color: 'red'}}>Username/Password incorrect.</p> : null}
         <button>Login</button>
       </form>
     </>
