@@ -31,7 +31,7 @@ const Login = () => {
 
     })
     .catch(err =>{
-      console.log('POST ERROR: ', err.response)
+      console.log('POST ERROR: Username/Password are incorrect!', err, err.response)
     })
 
     setValue(initialValues)
