@@ -18,6 +18,7 @@ const ColorList = ({ colors, updateColors }) => {
     setColorToEdit(color);
   };
 
+  //on save put request to server to update color
   const saveEdit = e => {
     e.preventDefault();
     console.log(e)
@@ -39,6 +40,7 @@ const ColorList = ({ colors, updateColors }) => {
     .delete(`/colors/${color.id}`)
     .then(res =>{
       //res.data (id)
+      //update colors list arrow with everything but the deleted color with id
       updateColors(colors.filter(item => item.id !== color.id))
     })
     .catch(err =>{

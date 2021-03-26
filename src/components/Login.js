@@ -23,10 +23,13 @@ const Login = () => {
   const login = (e) =>{
     e.preventDefault();
     
+    //post value to server
     axios.post('http://localhost:5000/api/login', value)
     .then(res =>{
       //res.data.payload
+      //set token to payload from server
       localStorage.setItem('token', res.data.payload)
+      //route to bubblepage
       push('/BubblePage')
 
     })
